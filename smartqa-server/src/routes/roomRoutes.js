@@ -1,10 +1,20 @@
 const express = require('express');
+const { body } = require('express-validator');
 const roomController = require('../controllers/roomController');
+const { authenticateUser, authorizeRoles } = require('../middleware/authMiddleware');
+
 const router = express.Router();
 
-router.post('/',roomController.createRoom);
-router.get('/:code',roomController.getByRoomCode);
-router.post('/:code/question',roomController.createQuestion);
-router.get('/:code/question',roomController.getQuestion);
+router.post('/', authenticateUser, body('createdBy').optional(), roomController.createRoom);
+router.get('/:code', roomController.getByRoomCode);
+router.post(
+  '/:code/question',
+  authenticateUser,
+  [body('content').notEmpty()],
+  roomController.createQuestion
+);
+router.get('/:code/question', roomController.getQuestion);
+router.delete('/:code', authenticateUser, authorizeRoles('admin'), roomController.deleteRoom);
+router.delete('/:code/question/:id', authenticateUser, authorizeRoles('admin'), roomController.deleteQuestion);
 
 module.exports = router;
