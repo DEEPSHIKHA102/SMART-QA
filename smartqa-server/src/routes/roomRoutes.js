@@ -5,12 +5,15 @@ const { authenticateUser, authorizeRoles } = require('../middleware/authMiddlewa
 
 const router = express.Router();
 
-router.post('/', authenticateUser, body('createdBy').optional(), roomController.createRoom);
+router.post(
+  '/',
+  body('createdBy').notEmpty().withMessage('createdBy is required'),
+  roomController.createRoom
+);
 router.get('/:code', roomController.getByRoomCode);
 router.post(
   '/:code/question',
-  authenticateUser,
-  [body('content').notEmpty()],
+  [body('content').notEmpty(), body('createdBy').notEmpty()],
   roomController.createQuestion
 );
 router.get('/:code/question', roomController.getQuestion);
