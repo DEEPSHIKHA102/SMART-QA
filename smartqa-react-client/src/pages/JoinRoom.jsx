@@ -54,7 +54,7 @@ function JoinRoom() {
             <div className="invalid-feedback">{errors.roomCode}</div>
           </div>
           <div className="mb-3">
-            <button type="button" onClick={handleSubmit}
+            <button type="button" onClick={()=>handleSubmit()}
               className="btn btn-primary w-100"
             >
               Submit

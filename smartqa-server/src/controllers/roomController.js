@@ -56,6 +56,9 @@ const roomController = {
       content,
       createdBy // ✅ now you control who asked the question
     });
+    const io = request.app.get("io");
+    io.to(code).emit("emit-question", question);
+
     response.json(question);
     } catch (error) {
       response.status(500).json({ message: 'Internal Server Error' });

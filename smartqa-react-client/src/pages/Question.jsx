@@ -28,7 +28,7 @@ function Question({ roomCode }) {
           `${serverEndpoint}/room/${roomCode}/question`,
           {
             content: question,
-            user: participantName ? participantName : "Anonymous",
+            createdBy: participantName ? participantName : "Anonymous",
           },
           {
             withCredentials: true,

@@ -4,7 +4,7 @@ import { serverEndpoint } from "../config/appConfig";
 import axios from 'axios';
 
 function CreateRoom() {
-  const [name, SetName] = useState(null);
+  const [name, setName] = useState(null);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
