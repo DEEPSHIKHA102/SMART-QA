@@ -11,6 +11,19 @@ function Room() {
   const [errors, setErrors] = useState({});
   const [room, setRoom] = useState(null);
   const [questions, setQuestions] = useState([]);
+  const [topQuestions, setTopQuestions] = useState([]);
+
+  const fetchTopQuestions = async() => {
+    try{
+      const response = await axios.get(`${serverEndpoint}/room/${code}/top-question`, {
+        withCredentials: true
+      });
+      setTopQuestions(response.data || []);
+    }catch(error){
+      console.log(error);
+      setErrors({ message: 'Unable to fetch top questions' });
+    }
+  }
 
   const fetchRoom = async () => {
     try {
@@ -78,7 +91,20 @@ function Room() {
   return (
     <div className="container py-5">
       <h2 className="mb-3">Room: {code}</h2>
-
+      <button className="btn btn-sm btn-outline-success" onClick={fetchTopQuestions}>
+        Get Top Questions
+      </button>
+      <hr/>
+      {topQuestions.length > 0 && (
+        <div className="mt-2">
+          <h5>Top Questions</h5>
+          <ul>
+            {topQuestions.map((question, index)=> (
+              <li key={index}>{question}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       <div className="mb-4">
         <h5>Questions</h5>
         <ul className="list-group">

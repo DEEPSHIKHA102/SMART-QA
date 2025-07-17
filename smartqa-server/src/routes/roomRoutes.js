@@ -17,6 +17,7 @@ router.post(
   roomController.createQuestion
 );
 router.get('/:code/question', roomController.getQuestion);
+router.get('/:code/top-question', roomController.generateTopQuestions);
 router.delete('/:code', authenticateUser, authorizeRoles('admin'), roomController.deleteRoom);
 router.delete('/:code/question/:id', authenticateUser, authorizeRoles('admin'), roomController.deleteQuestion);
 
