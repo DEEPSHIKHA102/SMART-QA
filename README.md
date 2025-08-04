@@ -19,9 +19,4 @@ SmartQA is a full-stack web application built to facilitate interactive question
 ##  Live Demo
 [Affiliate++ on Netlify](https://sparkly-arithmetic-727532.netlify.app)
 
-- `/server` – Express Backend
 
-
-
-## 📄 License
-This project is licensed under the MIT License.
