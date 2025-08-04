@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const http = require('http'); // ✅ fix: destructuring removed
+const http = require('http'); 
 const { Server } = require('socket.io');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
