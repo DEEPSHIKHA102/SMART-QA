@@ -26,7 +26,7 @@ function Navbar() {
       <div className="container px-4">
         {/* Left - App Brand */}
         <Link className="navbar-brand fw-bold text-primary" to="/">
-          SMART-QA
+          SMART-QA 💡
         </Link>
 
         {/* Hamburger toggle for small screens */}
